@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<div id="main">
+	<div id="left">
+		<div id="inputSection">
+			<form action="/" method="post">
+				<input type="text" placeholder="New list" />
+				<button type="submit">+</button>
+			</form>
+		</div>
+		<div class="list">
+			<a href="">List 1</a>
+			<a href="">List 2</a>
+			<a href="">List 3</a>
+		</div>
+	</div>
+	<div id="right">
+		<h1>List 1</h1>
+        <form action="/item" method="post">
+            <input type="text" placeholder="New item">
+            <button type="submit">+</button>
+        </form>
+		<div class="right-list">
+			<div class="list-item">Item 1</div>
+			<div class="list-item">Item 2</div>
+			<div class="list-item">Item 3</div>
+		</div>
+	</div>
+</div>
+
+<%- include('partials/footer') %>

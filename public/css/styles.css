@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+}
+
+#main {
+    display: flex;
+    height: 100vh;
+}
+
+#left {
+    flex: 2;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+}
+
+#inputSection {
+    background-color: blue;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+
+.list a{
+    background-color: blueviolet;
+    flex-basis: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#right {
+    flex: 6;
+    background-color: aqua;
+    text-align: center;
+}
+
+.right-list{
+    display: flex;
+    flex-direction: column;
+}
