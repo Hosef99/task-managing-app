@@ -25,17 +25,21 @@ app.use(express.static("public"))
 
 app.set("view engine", "ejs")
 
+
+let currList = "home"
+
 app.get('/', async function (req, res) {
     let listArr = []
     try {
         listArr = await List.find();
+        itemArr = await Task.find({name: currList});
     } catch (error) {
         console.log(error)
     }
 
     console.log(listArr.length)
 
-    res.render('index', {listArray: listArr});
+    res.render('index', {listArray: listArr, itemArray: itemArr, currList: currList});
 });
 
 app.get("/list", async function (req, res) {
