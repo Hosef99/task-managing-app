@@ -76,6 +76,17 @@ app.post("/item", async function (req, res) {
     res.redirect('/')
 })
 
+app.post("/delete", async function (req, res) {
+    let deleteItem = req.body.delete
+    console.log(deleteItem)
+    try {
+        await Task.deleteOne({name: deleteItem})
+    } catch (error) {
+        console.log(error)
+    }
+    res.redirect("/")
+})
+
 
 app.listen(3000, () => {
     console.log("Server running on port 3000.")
