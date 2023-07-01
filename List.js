@@ -5,10 +5,7 @@ listSchema = {
         type: String,
         required: true,
         unique: true
-    },
-    content: [{
-        name: String,
-    }]
+    }
 }
 
 module.exports = new mongoose.model("List", listSchema)

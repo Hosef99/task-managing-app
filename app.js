@@ -16,6 +16,10 @@ async function addList(listName){
     await List.insertMany({name: listName})
 }
 
+async function addItem(itemName){
+    await Task.insertMany({name: itemName, list: currList})
+}
+
 const connectionURL = "mongodb://127.0.0.1:27017/taskManagingApp"
 
 mongoose.connect(connectionURL)
@@ -26,26 +30,21 @@ app.use(express.static("public"))
 app.set("view engine", "ejs")
 
 
-let currList = "home"
+let currList = "Home"
 
 app.get('/', async function (req, res) {
     let listArr = []
     try {
         listArr = await List.find();
-        itemArr = await Task.find({name: currList});
+        itemArr = await Task.find({list: currList});
     } catch (error) {
         console.log(error)
     }
 
-    console.log(listArr.length)
+    console.log(currList)
 
     res.render('index', {listArray: listArr, itemArray: itemArr, currList: currList});
 });
-
-app.get("/list", async function (req, res) {
-    console.log(req.body.listName)
-    res.redirect("/")
-})
 
 app.post("/list", async function (req, res) {
     listName = req.body.listName
@@ -60,6 +59,22 @@ app.post("/list", async function (req, res) {
     res.redirect("/")
 })
 
+app.post("/toList", async function (req, res) {
+    let toList = req.body.toList
+    currList = toList
+    res.redirect("/")
+})
+
+app.post("/item", async function (req, res) {
+    itemName = req.body.newItem
+    console.log(itemName)
+    try {
+        await addItem(itemName)
+    } catch (error) {
+        console.log(error)
+    }
+    res.redirect('/')
+})
 
 
 app.listen(3000, () => {
