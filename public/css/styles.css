@@ -15,25 +15,27 @@ body {
 }
 
 #inputSection {
-    margin-top: 3em;
     width: 100%;
     height: 20%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 0.4em;
     border-bottom: 2px solid black;
 }
 
-.list {
+.list form{
     margin-top: 0.4em;
     display: flex;
     flex-direction: column;
     gap: 0.4em;
 }
 
-.list a{
+.list form{
     flex-basis: 3em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

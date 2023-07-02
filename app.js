@@ -41,14 +41,11 @@ app.get('/', async function (req, res) {
         console.log(error)
     }
 
-    console.log(currList)
-
     res.render('index', {listArray: listArr, itemArray: itemArr, currList: currList});
 });
 
 app.post("/list", async function (req, res) {
     listName = req.body.listName
-    console.log(listName)
     if (listName != ""){
         try {
             await addList(listName)
@@ -67,13 +64,36 @@ app.post("/toList", async function (req, res) {
 
 app.post("/item", async function (req, res) {
     itemName = req.body.newItem
-    console.log(itemName)
     try {
         await addItem(itemName)
     } catch (error) {
         console.log(error)
     }
     res.redirect('/')
+})
+
+app.post("/deleteItem", async function (req, res) {
+    let deleteItem = req.body.delete
+    try {
+        await Task.deleteOne({name: deleteItem})
+    } catch (error) {
+        console.log(error)
+    }
+    res.redirect("/")
+})
+
+app.post("/deleteList", async function (req, res) {
+    let deleteList = req.body.listName
+    if (deleteList != "Home"){
+        try {
+            await Task.deleteMany({list: deleteList})
+            await List.deleteOne({name: deleteList})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    res.redirect("/")
 })
 
 
