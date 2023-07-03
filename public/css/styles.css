@@ -25,15 +25,18 @@ body {
     border-bottom: 2px solid black;
 }
 
+
 .list form{
     margin-top: 0.4em;
     display: flex;
     flex-direction: column;
     gap: 0.4em;
+    justify-content: center;
+    align-items: center;
 }
 
-.list form{
-    flex-basis: 3em;
+.list button{
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,3 +73,6 @@ h1 {
     margin: 0;
 }
 
+input {
+
+}

@@ -1,52 +1,109 @@
 <%- include('partials/header') %>
 
 <div id="main">
-    <div id="left">
-        <div id="inputSection">
-            <form action="/list" method="post">
-                <input type="text" placeholder="New list" name="listName" />
-                <button type="submit">+</button>
-            </form>
-            <form action="/deleteList" method="post">
-                <input type="text" placeholder="Delete list" name="listName" />
-                <button type="submit">+</button>
-            </form>
-        </div>
-        <div class="list">
+	<div
+		class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary"
+		style="width: 380px"
+	>
+		<form class="row g-3 mt-3 ms-3" action="/list" method="post">
+			<div class="col-auto my-0">
+				<label for="inputList" class="visually-hidden"
+					>List name</label
+				>
+				<input
+                    name="listName"
+					type="text"
+					class="form-control"
+					id="inputList"
+					placeholder="List name"
+				/>
+			</div>
+			<div class="col-auto my-0">
+				<button type="submit" class="btn btn-primary">
+					Add list
+				</button>
+			</div>
+		</form>
+        <form class="row g-3 my-3 ms-3" action="/deleteList" method="post">
+			<div class="col-auto my-0 d-flex justify-content-center">
+				<label for="inputList" class="visually-hidden"
+					>List name</label
+				>
+				<input
+                    name="listName"
+					type="text"
+					class="form-control"
+					id="inputList"
+					placeholder="List name"
+				/>
+			</div>
+			<div class="col-auto my-0">
+				<button type="submit" class="btn btn-primary">
+					Delete list
+				</button>
+			</div>
+		</form>
+        
+		<div class="list-group list-group-flush border-bottom scrollarea">
             <form action="/toList" method="post">
-                <button name="toList" type="submit" value="Home">Home</button>
-                <% for (let i = 0; i < listArray.length; i++){ %>
                 <button
-                    name="toList"
-                    type="submit"
-                    value="<%= listArray[i].name %>"
-                >
-                    <%= listArray[i].name %>
-                </button>
-
-                <% } %>
-            </form>
-        </div>
-    </div>
-    <div id="right">
-        <h1><%= currList %></h1>
-        <form action="/item" method="post">
-            <input name="newItem" type="text" placeholder="New item" />
-            <button type="submit">+</button>
-        </form>
-
-        <div class="right-list">
-            <% for (let i = 0; i < itemArray.length; i++){ %>
-            <div class="list-item">
-                <form action="/deleteItem" method="post">
-                    <%= itemArray[i].name %>
-                    <button type="submit" name="delete" value="<%= itemArray[i].name %>">-</button>
-                </form>
-
-            </div>
+                name="toList"
+                value="Home"
+				class="list-group-item list-group-item-action py-3 lh-sm"
+			>
+				<div
+					class="d-flex w-100 align-items-center justify-content-between"
+				>
+					<strong class="mb-1">Home</strong>
+				</div>
+            </button>
+            
+            <% for (let i = 0; i < listArray.length; i++){ %>
+                <button
+				name="toList"
+                value="<%= listArray[i].name %>"
+				class="list-group-item list-group-item-action py-3 lh-sm"
+			>
+				<div
+					class="d-flex w-100 align-items-center justify-content-between"
+				>
+					<strong class="mb-1"><%= listArray[i].name %></strong>
+				</div>
+			</button>
             <% } %>
-        </div>
-    </div>
+            </form>
+            
+			
+
+			
+		</div>
+	</div>
+	<div id="right">
+		<h1><%= currList %></h1>
+		<form action="/item" method="post">
+			<input name="newItem" type="text" placeholder="New item" />
+			<button type="submit">+</button>
+		</form>
+
+		<div class="right-list">
+			<% for (let i = 0; i < itemArray.length; i++){ %>
+			<div class="list-item">
+				<form action="/deleteItem" method="post">
+					<%= itemArray[i].name %>
+					<button
+						type="submit"
+						name="delete"
+						value="<%= itemArray[i].name %>"
+					>
+						-
+					</button>
+				</form>
+			</div>
+			<% } %>
+		</div>
+	</div>
 </div>
+
+
 
 <%- include('partials/footer') %>
