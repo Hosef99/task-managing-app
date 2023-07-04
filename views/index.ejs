@@ -7,11 +7,9 @@
 	>
 		<form class="row g-3 mt-3 ms-3" action="/list" method="post">
 			<div class="col-auto my-0">
-				<label for="inputList" class="visually-hidden"
-					>List name</label
-				>
+				<label for="inputList" class="visually-hidden">List name</label>
 				<input
-                    name="listName"
+					name="listName"
 					type="text"
 					class="form-control"
 					id="inputList"
@@ -19,18 +17,14 @@
 				/>
 			</div>
 			<div class="col-auto my-0">
-				<button type="submit" class="btn btn-primary">
-					Add list
-				</button>
+				<button type="submit" class="btn btn-primary">Add list</button>
 			</div>
 		</form>
-        <form class="row g-3 my-3 ms-3" action="/deleteList" method="post">
+		<form class="row g-3 my-3 ms-3" action="/deleteList" method="post">
 			<div class="col-auto my-0 d-flex justify-content-center">
-				<label for="inputList" class="visually-hidden"
-					>List name</label
-				>
+				<label for="inputList" class="visually-hidden">List name</label>
 				<input
-                    name="listName"
+					name="listName"
 					type="text"
 					class="form-control"
 					id="inputList"
@@ -43,67 +37,69 @@
 				</button>
 			</div>
 		</form>
-        
-		<div class="list-group list-group-flush border-bottom scrollarea">
-            <form action="/toList" method="post">
-                <button
-                name="toList"
-                value="Home"
-				class="list-group-item list-group-item-action py-3 lh-sm"
-			>
-				<div
-					class="d-flex w-100 align-items-center justify-content-between"
-				>
-					<strong class="mb-1">Home</strong>
-				</div>
-            </button>
-            
-            <% for (let i = 0; i < listArray.length; i++){ %>
-                <button
-				name="toList"
-                value="<%= listArray[i].name %>"
-				class="list-group-item list-group-item-action py-3 lh-sm"
-			>
-				<div
-					class="d-flex w-100 align-items-center justify-content-between"
-				>
-					<strong class="mb-1"><%= listArray[i].name %></strong>
-				</div>
-			</button>
-            <% } %>
-            </form>
-            
-			
 
-			
+		<div class="list-group list-group-flush border-bottom scrollarea">
+			<form action="/toList" method="post">
+				<button
+					name="toList"
+					value="Home"
+					class="list-group-item list-group-item-action py-3 lh-sm"
+				>
+					<div
+						class="d-flex w-100 align-items-center justify-content-between"
+					>
+						<strong class="mb-1">Home</strong>
+					</div>
+				</button>
+
+				<% for (let i = 0; i < listArray.length; i++){ %>
+				<button
+					name="toList"
+					value="<%= listArray[i].name %>"
+					class="list-group-item list-group-item-action py-3 lh-sm"
+				>
+					<div
+						class="d-flex w-100 align-items-center justify-content-between"
+					>
+						<strong class="mb-1"><%= listArray[i].name %></strong>
+					</div>
+				</button>
+				<% } %>
+			</form>
 		</div>
 	</div>
-	<div id="right">
-		<h1><%= currList %></h1>
-		<form action="/item" method="post">
-			<input name="newItem" type="text" placeholder="New item" />
-			<button type="submit">+</button>
-		</form>
-
-		<div class="right-list">
-			<% for (let i = 0; i < itemArray.length; i++){ %>
-			<div class="list-item">
-				<form action="/deleteItem" method="post">
-					<%= itemArray[i].name %>
-					<button
+	<div class="container py-5 px-5">
+		<div class="p-5 text-center bg-body-tertiary rounded-3 d-flex justify-content-center align-items-center flex-column">
+			<h1 class="text-body-emphasis"><%= currList %></h1>
+            <form class="row g-3 my-3" action="/item" method="post">
+                <div class="col-auto my-0">
+                    <label for="inputItem" class="visually-hidden">Item name</label>
+                    <input
+                        name="newItem"
+                        type="text"
+                        class="form-control"
+                        id="inputItem"
+                        placeholder="Item name"
+                    />
+                </div>
+                <div class="col-auto my-0">
+                    <button type="submit" class="btn btn-primary">Add item</button>
+                </div>
+            </form>
+            <% for (let i = 0; i < itemArray.length; i++){ %>
+                <form action="/deleteItem" method="post" class="my-1 d-flex justify-content-center align-items-center">
+                    <span class="lead me-2"><%= itemArray[i].name %></span>
+                    <button
 						type="submit"
 						name="delete"
 						value="<%= itemArray[i].name %>"
-					>
-						-
-					</button>
-				</form>
-			</div>
-			<% } %>
+                        class="btn btn-primary ms-3"
+					>Delete
+                    </button>
+                </form>
+            <% } %>
 		</div>
 	</div>
 </div>
-
-
 
 <%- include('partials/footer') %>
